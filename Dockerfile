@@ -10,6 +10,7 @@ RUN apt install wget unzip -y
 RUN mkdir /tools
 WORKDIR /tools
 RUN wget https://github.com/frohoff/ysoserial/releases/download/v0.0.6/ysoserial-all.jar -O ysoserial.jar
+RUN wget https://github.com/qtc-de/beanshooter/releases/download/v4.1.0/beanshooter-4.1.0-jar-with-dependencies.jar -O beanshooter.jar
 COPY marshalsec-0.0.3-SNAPSHOT-all.jar ./marshalsec.jar
 
 RUN mkdir /jdk
