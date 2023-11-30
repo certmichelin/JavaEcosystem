@@ -4,25 +4,20 @@ name: Java Ecosystem CI.
 
 on:
   push:
-    tags:
-      - '*.*.*'
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
-    - name: Retrieve version number
-      id: vars
-      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
         
     - name: Build & Push the image to GitHub Packages
-      uses: docker/build-push-action@v1
+      uses: docker/build-push-action@v2
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.DOCKER_TOKEN }}
         registry: ghcr.io
         repository: certmichelin/javaecosystem/javaecosystem
-        tags: ${{ steps.vars.outputs.tag }}
+        tags: latest
         
