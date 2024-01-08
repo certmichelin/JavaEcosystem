@@ -5,13 +5,27 @@ LABEL maintainer='Maxime Escourbiac <maxime.escourbiac_ext@michelin.com>'
 RUN apt update
 RUN apt dist-upgrade -y
 RUN apt install wget unzip -y
+RUN apt install git -y
+RUN apt install curl -y
+RUN apt install python3 python3-pip -y
 
 #Install tools.
 RUN mkdir /tools
 WORKDIR /tools
+
+#Ysoserial
 RUN wget https://github.com/frohoff/ysoserial/releases/download/v0.0.6/ysoserial-all.jar -O ysoserial.jar
-RUN wget https://github.com/qtc-de/beanshooter/releases/download/v4.1.0/beanshooter-4.1.0-jar-with-dependencies.jar -O beanshooter.jar
+
+#MarshallSec
 COPY marshalsec-0.0.3-SNAPSHOT-all.jar ./marshalsec.jar
+
+#Beanshooter
+RUN wget https://github.com/qtc-de/beanshooter/releases/download/v4.1.0/beanshooter-4.1.0-jar-with-dependencies.jar -O beanshooter.jar
+
+#Jolokia Exploitation tools
+RUN git clone https://github.com/laluka/jolokia-exploitation-toolkit.git
+WORKDIR /tools/jolokia-exploitation-toolkit
+RUN python3 -m pip install -r requirements.txt --break-system-packages
 
 RUN mkdir /jdk
 WORKDIR /jdk
