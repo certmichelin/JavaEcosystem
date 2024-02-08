@@ -22,6 +22,9 @@ COPY marshalsec-0.0.3-SNAPSHOT-all.jar ./marshalsec.jar
 #Beanshooter
 RUN wget https://github.com/qtc-de/beanshooter/releases/download/v4.1.0/beanshooter-4.1.0-jar-with-dependencies.jar -O beanshooter.jar
 
+#JNDI Exploit Kit
+RUN wget https://github.com/pimps/JNDI-Exploit-Kit/raw/master/target/JNDI-Exploit-Kit-1.0-SNAPSHOT-all.jar -O JNDI-Exploit-Kit.jar
+
 #Jolokia Exploitation tools
 RUN git clone https://github.com/laluka/jolokia-exploitation-toolkit.git
 WORKDIR /tools/jolokia-exploitation-toolkit
